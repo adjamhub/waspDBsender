@@ -12,21 +12,23 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString db_name = "";
-    QString user = "";
-    QString pass = "";
-    QString host = "";
+    QString db_name = "Sql633384_5";
+    QString user = "Sql633384";
+    QString pass = "93ffbd5a";
+    QString host = "62.149.150.182";
 
     _db = QSqlDatabase::addDatabase("QMYSQL");
     _db.setHostName(host);
     _db.setDatabaseName(db_name);
     _db.setUserName(user);
     _db.setPassword(pass);
+    _db.setPort(3306);
 
     _filePath = "";
 
     // Connect objects
-    connect(ui->connectButton, &QPushButton::clicked, this, &Widget::connectToDB);
+    connect(ui->connectButton, &QPushButton::clicked,
+            this, &Widget::connectToDB);
     connect(ui->loadDataButton, &QPushButton::clicked, this, &Widget::loadDataInDB);
 }
 
