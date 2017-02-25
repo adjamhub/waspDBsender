@@ -2,7 +2,12 @@
 #define WIDGET_H
 
 #include <QWidget>
-#include <QSqlDatabase>
+
+#include <QNetworkAccessManager>
+#include <QNetworkProxy>
+#include <QNetworkReply>
+
+#include <QSerialPort>
 
 
 namespace Ui {
@@ -14,17 +19,33 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-    explicit Widget(QWidget *parent = 0);
+    explicit Widget(QWidget *parent = nullptr);
     ~Widget();
 
-    bool connectToDB();
-    bool loadDataInDB();
+private Q_SLOTS:
+    void activateSerialPort(bool p);
+    void handleReadyRead();
+    void manageReply(QNetworkReply* reply);
+    void updateSerialPortList();
+
+    void apply();
+    void load();
+    void save();
+
 
 private:
     Ui::Widget *ui;
 
-    QSqlDatabase _db;
-    QString _filePath;
+    // manage network connections. See docs
+    QNetworkAccessManager* _manager;
+
+    // proxy is necessary inside school network
+    QNetworkProxy _proxy;
+
+    // the serial port pointer
+    QSerialPort* _serialPort;
+
+    QString _siteUrl;
 };
 
 #endif // WIDGET_H

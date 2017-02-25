@@ -1,38 +1,19 @@
-#include "widget.h"
-#include "serialportreader.h"
 
-#include <QApplication>
 
-#include <QSerialPort>
-#include <QTextStream>
+#include "application.h"
 
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    // Just it :)
+    Application a(argc, argv);
 
+    // set application data
+    QCoreApplication::setApplicationName("waspsender");
+    QCoreApplication::setApplicationVersion("0.0.1");
 
-//    // prima la porta seriale...
-//    QSerialPort serialPort;
-//    QString serialPortName = "COM3";
-//    serialPort.setPortName(serialPortName);
+    QCoreApplication::setOrganizationName("LiceoDaVinciJesi");
+    QCoreApplication::setOrganizationDomain("liceodavincijesi.gov.it");
 
-//    int serialPortBaudRate = QSerialPort::Baud38400;
-//    serialPort.setBaudRate(serialPortBaudRate);
-
-//    if (!serialPort.open(QIODevice::ReadOnly)) {
-//        QTextStream standardOutput(stdout);
-//        standardOutput << "Azz..." << endl;
-//        return 1;
-//    }
-
-//    SerialPortReader serialPortReader(&serialPort);
-
-
-    // ... poi la finestrella :)
-    Widget w;
-    w.show();
-
-    // Alla fine, parte la banda!!!
     return a.exec();
 }

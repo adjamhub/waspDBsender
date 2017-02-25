@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets sql serialport
+QT       += core gui widgets serialport network
 
 TARGET = waspsender
 TEMPLATE = app
@@ -23,9 +23,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         widget.cpp \
-    serialportreader.cpp
+    systemtrayicon.cpp \
+    application.cpp
 
 HEADERS  += widget.h \
-    serialportreader.h
+    systemtrayicon.h \
+    application.h
 
 FORMS    += widget.ui
+
+RESOURCES += \
+    roba.qrc
