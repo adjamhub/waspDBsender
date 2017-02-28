@@ -11,7 +11,7 @@
 
 
 namespace Ui {
-class Widget;
+    class Widget;
 }
 
 class Widget : public QWidget
@@ -36,15 +36,17 @@ private Q_SLOTS:
 private:
     Ui::Widget *ui;
 
-    // manage network connections. See docs
+    // puntatore alla classe in grado di gestire le connessioni di rete
+    // Guarda la documentazione
     QNetworkAccessManager* _manager;
 
-    // proxy is necessary inside school network
+    // Il proxy serve per collegarsi a Internet DENTRO la rete scolastica
     QNetworkProxy _proxy;
 
-    // the serial port pointer
+    // puntatore alla porta seriale
     QSerialPort* _serialPort;
 
+    // stringa che rappresenta l'URL del sito ove inviare i dati
     QString _siteUrl;
 };
 

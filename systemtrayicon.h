@@ -10,10 +10,11 @@ class SystemTrayIcon : public QSystemTrayIcon
     Q_OBJECT
 
 public:
-    explicit SystemTrayIcon(QObject* parent = nullptr);
+    SystemTrayIcon(QObject* parent = nullptr);
     ~SystemTrayIcon();
 
-    // add action pointed by ac to context menu
+    // Funzione di utilità
+    // Aggiunge l'azione puntata da ac al menù contestuale
     void addAction(QAction* ac);
 
 private:

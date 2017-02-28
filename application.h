@@ -14,15 +14,18 @@ class Application : public QApplication
     Q_OBJECT
 
 public:
-    explicit Application(int &argc, char** argv);
+    Application(int &argc, char** argv);
     ~Application();
 
 private:
+    // L'icona nel vassoio di sistema
     SystemTrayIcon* _trayIcon;
 
+    // le azioni presenti nella system tray icon
     QAction* _quitAction;
     QAction* _showWindowAction;
 
+    // la finestra principale del programma
     Widget* _mainWidget;
 };
 

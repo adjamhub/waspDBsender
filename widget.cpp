@@ -37,7 +37,7 @@ Widget::Widget(QWidget *parent) :
     // last things, the objects
     _serialPort = new QSerialPort(this);
 
-    _siteUrl = "http://www.liceodavincijesi.gov.it/pages/wasp/insert.php?";
+    _siteUrl = "http://www.liceodavincijesi.gov.it/pages/IoT/insert.php";
 
     //
     _manager = new QNetworkAccessManager(this);
@@ -185,7 +185,8 @@ void Widget::handleReadyRead()
     ui->logsTextEdit->append("URL DATA SENT");
     ui->logsTextEdit->append(queryUrl);
 
-    QString url = _siteUrl + queryUrl;
+    // l'URL da creare per l'invio DEVE essere fatto in questo modo
+    QString url = _siteUrl + "&" + queryUrl;
     ui->logsTextEdit->append(url);
 
     _manager->get(QNetworkRequest(QUrl(url)));
@@ -202,7 +203,8 @@ void Widget::manageReply(QNetworkReply* reply)
         ui->logsTextEdit->append(reply->errorString());
         return;
     }
-    ui->logsTextEdit->append("ehi ehi ehi...");
+
+    ui->logsTextEdit->append("invio avvenuto correttamente!!!");
 }
 
 
@@ -228,6 +230,7 @@ void Widget::apply()
         ui->logsTextEdit->append("NO proxy SET");
         return;
     }
+
     _proxy.setType(QNetworkProxy::HttpCachingProxy);
     _proxy.setHostName(ui->proxyHostLineEdit->text());
     _proxy.setPort(ui->proxyPortSpinBox->value());
